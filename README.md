@@ -1,4 +1,4 @@
-# Coding Problems REPL (CRP) 
+# Coding Problems REPL 
 
 - A REPL for practicing coding and software engineering related problems. 
 - Really, you could use this for learning any subject as it's just a simple flashcard tool that lives in your terminal.
