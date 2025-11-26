@@ -1,8 +1,18 @@
+using System.Buffers.Text;
+using System.Security.Cryptography;
+using CodingProblemsRepl.Api.Endpoints.PracticeProblems;
+using CodingProblemsRepl.Api.Utilities;
+using Microsoft.Extensions.Options;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
 builder.Services.AddOpenApi();
+builder.Services.Configure<EncryptionKeys>(
+    builder.Configuration.GetSection(nameof(EncryptionKeys)));
+
+builder.Services.RegisterUtilities();
 
 var app = builder.Build();
 
@@ -32,6 +42,8 @@ app.MapGet("/weatherforecast", () =>
     return forecast;
 })
 .WithName("GetWeatherForecast");
+
+app.RegisterPracticeProblemEndpoints();
 
 app.Run();
 
